@@ -43,12 +43,12 @@ TARGET_TIMEZONE=Asia/Chongqing
 
 LOCAL_DOMAIN="ops.local"
 
-DHCP_PRE=172.16.207
+DHCP_PRE=10.101.8
 DHCP_SUBNET=$DHCP_PRE.0
 DHCP_MASK=255.255.255.0
-DHCP_DHCP_ROUTER=$DHCP_PRE.2   # it should be a router ip in most cases
-DHCP_DHCP_SERVER=$DHCP_PRE.90  # IP address of 'pxe-server'
-DHCP_RANGE="${DHCP_PRE}.100  ${DHCP_PRE}.220"  # the pool
+DHCP_DHCP_ROUTER=$DHCP_PRE.253   # it should be a router ip in most cases
+DHCP_DHCP_SERVER=$DHCP_PRE.18  # IP address of 'pxe-server'
+DHCP_RANGE="${DHCP_PRE}.100  ${DHCP_PRE}.150"  # the pool
 
 PXE_IP=$DHCP_DHCP_SERVER
 PXE_HOSTNAME="pxe-server" # BIOS name of PXE server, or IP address
@@ -468,7 +468,7 @@ v_download_iso() {
 	}
 
 	grep -qE "$tftp_dir/iso/" /etc/fstab || {
-		echo "$tftp_dir/iso/$ubuntu_iso on $tftp_dir/cdrom    iso9660     ro,loop    0 0" | $SUDO tee -a /etc/fstab
+		echo "$tftp_dir/iso/$ubuntu_iso $tftp_dir/cdrom    iso9660     ro,loop    0 0" | $SUDO tee -a /etc/fstab
 		$SUDO mount -a && ls -la --color $tftp_dir/cdrom
 	}
 }
