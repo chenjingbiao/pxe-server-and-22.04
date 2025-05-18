@@ -20,7 +20,7 @@
 # Description: `vms-builder` create a pxe-server so that new vm can boot fron LAN with it
 # Version: 20211231
 #
-
+apt update
 SUDO=sudo
 [ "$(id -u)" = "0" ] && SUDO=
 
