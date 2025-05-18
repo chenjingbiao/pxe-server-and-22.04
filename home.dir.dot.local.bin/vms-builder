@@ -58,7 +58,7 @@ ubuntu_version=22.04.3
 read -p "Please enter the mirror path(ubuntu-$ubuntu_version): " ubuntu_path
 ubuntu_iso=ubuntu-${ubuntu_version}-live-server-amd64.iso
 
-#ubuntu_mirrors=("mirrors.cqu.edu.cn" "mirrors.ustc.edu.cn" "mirrors.tuna.tsinghua.edu.cn" "mirrors.163.com" "mirrors.aliyun.com")
+ubuntu_mirrors=("mirrors.cqu.edu.cn" "mirrors.ustc.edu.cn" "mirrors.tuna.tsinghua.edu.cn" "mirrors.163.com" "mirrors.aliyun.com")
 
 ##################################################
 
@@ -67,8 +67,8 @@ ubuntu_iso=ubuntu-${ubuntu_version}-live-server-amd64.iso
 vms_entry() {
 	headline "vms-builder is running"
 
-	#local ubuntu_iso_url="https://${ubuntu_mirrors[0]}/ubuntu-releases/${ubuntu_codename}/${ubuntu_iso}"
-	#local alternate_ubuntu_iso_url=${alternate_ubuntu_iso_url:-$ubuntu_iso_url}
+	local ubuntu_iso_url="https://${ubuntu_mirrors[0]}/ubuntu-releases/${ubuntu_codename}/${ubuntu_iso}"
+	local alternate_ubuntu_iso_url=${alternate_ubuntu_iso_url:-$ubuntu_iso_url}
 
 	local tftp_dir=/srv/tftp
 	local full_nginx=-full
