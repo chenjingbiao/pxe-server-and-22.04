@@ -160,7 +160,7 @@ v_config_aif() {
 			    username: $TARGET_USERNAME
 			    password: "${TARGET_PASSWORD}"
 
-			  keyboard: {layout: 'us', variant: 'us'}
+			  keyboard: {layout: 'us', variant: ''}
 			  # keyboard: {layout: 'gb', variant: 'devorak'}
 			  locale: $TARGET_LOCALE
 
