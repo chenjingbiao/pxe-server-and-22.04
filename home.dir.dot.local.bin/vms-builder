@@ -24,9 +24,9 @@
 SUDO=sudo
 [ "$(id -u)" = "0" ] && SUDO=
 
-_default_passwd='$6$M8WnHMy5c6Mj$9hBKDqImDNSvhU.ANvrRfMW.qEmK0wZS1zExtGh0hkSc7kb4TTAC1q6TCC/MF806v5yXi8jZ/g6gHGchKb2Ko/'
+_default_passwd='$6$8oI3OLokN0172.hU$UD8sV8EeBnDohfCfPHwaziSMNbBCBXBJOsb7Dpv.kQclMSZkupNJzaLvpg8joapbtfCNAsoP0qZc/ktTRHmoM1'
 TARGET_HOSTNAME="${TARGET_HOSTNAME:-ubuntu-server}"
-TARGET_USERNAME="${TARGET_USERNAME:-hz}"
+TARGET_USERNAME="${TARGET_USERNAME:-u}"
 TARGET_PASSWORD="${TARGET_PASSWORD:-$_default_passwd}"
 TARGET_LOCALE="${TARGET_LOCALE:-en_US.UTF-8}"
 TARGET_SSH_KEYS=(
@@ -35,11 +35,11 @@ TARGET_SSH_KEYS=(
 TARGET_PKGS=(
 	# net-tools
 	# lsof
-	curl
-	wget
+	# curl
+	# wget
 	# whois
 )
-TARGET_TIMEZONE=Asia/Chongqing
+TARGET_TIMEZONE=Asia/Shanghai
 
 LOCAL_DOMAIN="ops.local"
 
@@ -58,7 +58,7 @@ ubuntu_version=22.04.3
 read -p "Please enter the mirror path(ubuntu-$ubuntu_version): " ubuntu_path
 ubuntu_iso=ubuntu-${ubuntu_version}-live-server-amd64.iso
 
-ubuntu_mirrors=("mirrors.cqu.edu.cn" "mirrors.ustc.edu.cn" "mirrors.tuna.tsinghua.edu.cn" "mirrors.163.com" "mirrors.aliyun.com")
+#ubuntu_mirrors=("mirrors.cqu.edu.cn" "mirrors.ustc.edu.cn" "mirrors.tuna.tsinghua.edu.cn" "mirrors.163.com" "mirrors.aliyun.com")
 
 ##################################################
 
@@ -67,8 +67,8 @@ ubuntu_mirrors=("mirrors.cqu.edu.cn" "mirrors.ustc.edu.cn" "mirrors.tuna.tsinghu
 vms_entry() {
 	headline "vms-builder is running"
 
-	local ubuntu_iso_url="https://${ubuntu_mirrors[0]}/ubuntu-releases/${ubuntu_codename}/${ubuntu_iso}"
-	local alternate_ubuntu_iso_url=${alternate_ubuntu_iso_url:-$ubuntu_iso_url}
+	#local ubuntu_iso_url="https://${ubuntu_mirrors[0]}/ubuntu-releases/${ubuntu_codename}/${ubuntu_iso}"
+	#local alternate_ubuntu_iso_url=${alternate_ubuntu_iso_url:-$ubuntu_iso_url}
 
 	local tftp_dir=/srv/tftp
 	local full_nginx=-full
