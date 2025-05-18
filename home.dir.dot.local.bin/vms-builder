@@ -47,14 +47,15 @@ DHCP_PRE=10.101.8
 DHCP_SUBNET=$DHCP_PRE.0
 DHCP_MASK=255.255.255.0
 DHCP_DHCP_ROUTER=$DHCP_PRE.253   # it should be a router ip in most cases
-DHCP_DHCP_SERVER=$DHCP_PRE.18  # IP address of 'pxe-server'
+DHCP_DHCP_SERVER=$DHCP_PRE.19  # IP address of 'pxe-server'
 DHCP_RANGE="${DHCP_PRE}.100  ${DHCP_PRE}.150"  # the pool
 
 PXE_IP=$DHCP_DHCP_SERVER
 PXE_HOSTNAME="pxe-server" # BIOS name of PXE server, or IP address
 
-ubuntu_codename=focal
-ubuntu_version=20.04.3
+ubuntu_codename=jammy
+ubuntu_version=22.04.3
+ubuntu_path=/root
 ubuntu_iso=ubuntu-${ubuntu_version}-live-server-amd64.iso
 
 ubuntu_mirrors=("mirrors.cqu.edu.cn" "mirrors.ustc.edu.cn" "mirrors.tuna.tsinghua.edu.cn" "mirrors.163.com" "mirrors.aliyun.com")
@@ -71,7 +72,7 @@ vms_entry() {
 
 	local tftp_dir=/srv/tftp
 	local full_nginx=-full
-  apt update
+	apt update
 	v_install   # install software packages: tftp, dhcp, nginx, etc
 	v_config    # and configure its
 	v_end       #
@@ -464,11 +465,10 @@ v_install_web_server() {
 v_download_iso() {
 	headline "$(fn_name)"
 	local tgt=$tftp_dir/iso/$ubuntu_iso
-	read -p "input iso path: " ios_path
 	[ -f $tgt ] || {
-		cp ${iso_path} $tgt
+		cp ${ubuntu_path}/$ubuntu_iso $tgt
 		[ -f $tgt ] || {
-			wget "$alternate_ubuntu_iso_url" -O $tgt
+			exit 
 		}
 	}
 
