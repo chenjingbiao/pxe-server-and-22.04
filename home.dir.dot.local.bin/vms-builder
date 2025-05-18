@@ -132,6 +132,7 @@ v_config_aif() {
 			    primary:
 			      - arches: [default]
 			        uri: http://${ubuntu_mirrors[0]}/ubuntu
+			    fallback: offline-install
 			    # geoip: true
 			    # sources:
 			    #   my-ppa.list:
