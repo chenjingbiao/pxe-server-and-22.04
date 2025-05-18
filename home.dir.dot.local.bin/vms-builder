@@ -20,7 +20,7 @@
 # Description: `vms-builder` create a pxe-server so that new vm can boot fron LAN with it
 # Version: 20211231
 #
-apt update
+
 SUDO=sudo
 [ "$(id -u)" = "0" ] && SUDO=
 
@@ -71,7 +71,7 @@ vms_entry() {
 
 	local tftp_dir=/srv/tftp
 	local full_nginx=-full
-
+  apt update
 	v_install   # install software packages: tftp, dhcp, nginx, etc
 	v_config    # and configure its
 	v_end       #
@@ -440,7 +440,7 @@ v_config_boot() {
 v_install() {
 	echo && headline "$(fn_name)" && line
 
-  apt install ifconfig
+  apt install net-tools
 	v_install_tftp_server
 	v_install_dhcp_server
 	v_install_web_server
