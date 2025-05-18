@@ -35,7 +35,6 @@ TARGET_SSH_KEYS=(
 TARGET_PKGS=(
 	# net-tools
 	# lsof
-  ifconfig
 	curl
 	wget
 	# whois
@@ -441,6 +440,7 @@ v_config_boot() {
 v_install() {
 	echo && headline "$(fn_name)" && line
 
+  apt install ifconfig
 	v_install_tftp_server
 	v_install_dhcp_server
 	v_install_web_server
