@@ -440,7 +440,7 @@ v_config_boot() {
 v_install() {
 	echo && headline "$(fn_name)" && line
 
-  apt install net-tools
+	apt install net-tools
 	v_install_tftp_server
 	v_install_dhcp_server
 	v_install_web_server
@@ -464,8 +464,12 @@ v_install_web_server() {
 v_download_iso() {
 	headline "$(fn_name)"
 	local tgt=$tftp_dir/iso/$ubuntu_iso
+	read -p "input iso path: " ios_path
 	[ -f $tgt ] || {
-		wget "$alternate_ubuntu_iso_url" -O $tgt
+		cp ${iso_path} $tgt
+		[ -f $tgt ] || {
+			wget "$alternate_ubuntu_iso_url" -O $tgt
+		}
 	}
 
 	grep -qE "$tftp_dir/iso/" /etc/fstab || {
