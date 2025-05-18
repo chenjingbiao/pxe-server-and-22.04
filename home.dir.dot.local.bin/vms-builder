@@ -35,6 +35,7 @@ TARGET_SSH_KEYS=(
 TARGET_PKGS=(
 	# net-tools
 	# lsof
+  ifconfig
 	curl
 	wget
 	# whois
