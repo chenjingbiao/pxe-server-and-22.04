@@ -55,7 +55,7 @@ PXE_HOSTNAME="pxe-server" # BIOS name of PXE server, or IP address
 
 ubuntu_codename=jammy
 ubuntu_version=22.04.3
-ubuntu_path=/root
+read -p "Please enter the mirror path(ubuntu-$ubuntu_version): " ubuntu_path
 ubuntu_iso=ubuntu-${ubuntu_version}-live-server-amd64.iso
 
 ubuntu_mirrors=("mirrors.cqu.edu.cn" "mirrors.ustc.edu.cn" "mirrors.tuna.tsinghua.edu.cn" "mirrors.163.com" "mirrors.aliyun.com")
@@ -132,6 +132,7 @@ v_config_aif() {
 			    primary:
 			      - arches: [default]
 			        uri: http://${ubuntu_mirrors[0]}/ubuntu
+			    ### 离线安装 ###
 			    fallback: offline-install
 			    # geoip: true
 			    # sources:
